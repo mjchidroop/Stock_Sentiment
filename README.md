@@ -57,8 +57,10 @@ Classify the input text as **Positive, Negative, or Neutral** based on the polar
 Execute the program and analyze the stock price prediction and sentiment analysis results.
 
 ## PROGRAM:
-
-*(Paste the Python code for Stock Market Prediction using Linear Regression and Real-Time Sentiment Analysis of Tweets here.)*
+```py
+Name : Chidroop M J
+Registered number: 212225240029
+```
 ### Loading Datasets:
 ```python
 import pandas as pd
@@ -134,10 +136,33 @@ print(data[["text", "Sentiment"]].head())
 ```
 ## OUTPUT:
 
-*(Paste the execution output showing the predicted stock prices, evaluation metrics, actual versus predicted stock price graph, and sentiment analysis results.)*
-### Predicted Stock Prices:  
+### Predicted Stock Prices and Evaluation metrics:  
+<img width="1326" height="153" alt="image" src="https://github.com/user-attachments/assets/815526dc-d1e8-4637-afc1-f33a32b08b81" />
 
+### Actual vs Predicted Stock Prices:   
+<img width="1326" height="470" alt="image" src="https://github.com/user-attachments/assets/cbce3ff7-907b-4044-83ac-effb0d260c42" />
 
+### Sentiment Analysis Results:  
+```
+Sentiment
+Negative    39944
+Positive    33336
+Neutral     26720
+Name: count, dtype: int64
+```
+
+<img width="1326" height="442" alt="image" src="https://github.com/user-attachments/assets/ed56b036-d6e5-4c51-ab59-dc8de8576525" />
+
+### Sample Results:
+```
+Sample Results:
+                                                text Sentiment
+0                                   Watching TV now.   Neutral
+1                      Just finished my lunch break.   Neutral
+2  The new update is awesome, super smooth and fast.  Positive
+3                      Just finished my lunch break.   Neutral
+4      The service was slow and the staff were rude.  Negative
+```
 
 
 ## RESULT:
