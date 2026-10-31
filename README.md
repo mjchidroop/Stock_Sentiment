@@ -59,10 +59,86 @@ Execute the program and analyze the stock price prediction and sentiment analysi
 ## PROGRAM:
 
 *(Paste the Python code for Stock Market Prediction using Linear Regression and Real-Time Sentiment Analysis of Tweets here.)*
+### Loading Datasets:
+```python
+import pandas as pd
 
+stock_url = "https://raw.githubusercontent.com/mjchidroop/Stock_Sentiment/main/stock_data_big.csv"
+tweets_url = "https://raw.githubusercontent.com/mjchidroop/Stock_Sentiment/main/tweets_big.csv"
+
+stock_data = pd.read_csv(stock_url)
+tweets_data = pd.read_csv(tweets_url)
+```
+### Stock Prices Prediction using Linear Regression:
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error, r2_score
+
+data = stock_data.copy()
+print(data.head())
+
+X = data[["Open", "High", "Low", "Volume"]]
+y = data["Close"]
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+model = LinearRegression()
+model.fit(X_train, y_train)
+
+predictions = model.predict(X_test)
+
+print("\nMean Squared Error:", mean_squared_error(y_test, predictions))
+print("R2 Score:", r2_score(y_test, predictions))
+
+plt.figure(figsize=(8,5))
+plt.plot(y_test.values[:50], label='Actual Prices', color='blue')
+plt.plot(predictions[:50], label='Predicted Prices', color='red')
+plt.title("Stock Price Prediction (Actual vs Predicted)")
+plt.xlabel("Time")
+plt.ylabel("Stock Close Price")
+plt.legend()
+plt.show()
+```
+
+```python
+from textblob import TextBlob
+
+data = tweets_data.copy()
+
+def get_sentiment(text):
+    analysis = TextBlob(str(text))
+    if analysis.sentiment.polarity > 0:
+        return "Positive"
+    elif analysis.sentiment.polarity < 0:
+        return "Negative"
+    else:
+        return "Neutral"
+
+data["Sentiment"] = data["text"].apply(get_sentiment)
+
+sentiment_counts = data["Sentiment"].value_counts()
+print(sentiment_counts)
+
+plt.figure(figsize=(6,4))
+sentiment_counts.plot(kind='bar', color=['green','red','gray'])
+plt.title("Sentiment Analysis Results")
+plt.xlabel("Sentiment Type")
+plt.ylabel("Number of Tweets/Reviews")
+plt.show()
+
+print("\nSample Results:")
+print(data[["text", "Sentiment"]].head())
+```
 ## OUTPUT:
 
 *(Paste the execution output showing the predicted stock prices, evaluation metrics, actual versus predicted stock price graph, and sentiment analysis results.)*
+### Predicted Stock Prices:  
+
+
+
 
 ## RESULT:
 
